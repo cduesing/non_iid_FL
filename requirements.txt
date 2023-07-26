@@ -1,0 +1,7 @@
+pytorch
+scikit-learn
+numpy
+pandas
+scipy
+statistics
+tqdm
