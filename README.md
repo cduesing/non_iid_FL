@@ -9,104 +9,61 @@ In turn, this project provides a toolset to simulate different types of data imb
 
 ## Installation
 
+The installation works best in a brand conda environment. 
+Once created, install the required packages using ___pip install___ or ___conda install___(preferred), using
+```
+pip install -r requirements.txt
+```
+or 
+```
+conda install --file requirements.txt
+```
 
 ## Run
 
+Use the following command to run FL from your terminal
+```
+python run.py --strategy="fedavg" --dataset="covtype"
+```
+Alternatively, you can run the project interactively using the provided ___Jupyter Notebook___.
 
 ## Choose Federated Learning Strategies
 
+The following FL strategies are contained and can be applied using the given name:
+- ___FedAvg___: McMahan, B., Moore, E., Ramage, D., Hampson, S., & y Arcas, B. A. (2017, April). Communication-efficient learning of deep networks from decentralized data. In Artificial intelligence and statistics (pp. 1273-1282). PMLR.
+- ___FedProx___: Li, T., Sahu, A. K., Zaheer, M., Sanjabi, M., Talwalkar, A., & Smith, V. (2020). Federated optimization in heterogeneous networks. Proceedings of Machine learning and systems, 2, 429-450.
+- ___FedAtt___: Ji, S., Pan, S., Long, G., Li, X., Jiang, J., & Huang, Z. (2019, July). Learning private neural language modeling with attentive aggregation. In 2019 International joint conference on neural networks (IJCNN) (pp. 1-8). IEEE.
+- ___FedED___: Sui, D., Chen, Y., Zhao, J., Jia, Y., Xie, Y., & Sun, W. (2020, November). Feded: Federated learning via ensemble distillation for medical relation extraction. In Proceedings of the 2020 conference on empirical methods in natural language processing (EMNLP) (pp. 2118-2128).
+- ___FedMD___: Li, D., & Wang, J. (2019). Fedmd: Heterogenous federated learning via model distillation. arXiv preprint arXiv:1910.03581.
+- ___FedDF___: Lin, T., Kong, L., Stich, S. U., & Jaggi, M. (2020). Ensemble distillation for robust model fusion in federated learning. Advances in Neural Information Processing Systems, 33, 2351-2363.
 
 ## Apply Data Imbalances
+
+The project allows to apply two kinds of data imbalance subsequentially:
+### Label skew
+- ___None___ or ___homogeneous___: no skew is applied. Data distribution is iid.
+- ___label_distribution___: clients are forced to differ in terms of their label distribution. The parameter ___label_alpha___ controls for the severeness, where small values indicate high label imbalance, i.e., clients differ strongly w.r.t. their labels held.
+- ___label_quantity___: clients are limited to the mount of different labels defined by ___label_n___. Hence, not each client might know about all labels.
+- ___quantity___: When this is selected, the parameter ___label_alpha___ controls for the the difference in number of samples held by each client. The labels are distributed iid, but some clients possess more samples than others.
+- ___clustering___: relies on a clustering-based approach of client distribution. The parameter ___purity___ defines the extent of imbalance, where high ___purity___ indicates high imbalance.
+### Attribute skew
+- ___noise___: Randomly inserts noise into the features of individual clients by replacing them, e.g., with zeros. The parameter ___attribute_alpha___ controls for the severeness, where small values indicate high imbalance.
+- ___availablity___: zeros-out entire features (randomly selected) per client. The parameter ___attribute_alpha___ controls for the severeness, where small values indicate a large number of columns being removed.
 
 
 ## Add Models
 
+Custom models can be added in the ___models.py___ file.
+Therefore, add another class according to the scheme of the exsting classes.
+You need to define a ___forward___-pass function and define the all layer in the ___init___.
+
+Finally, register your model in the ___get_model_by_name___ function at the bottom of the file.
 
 ## Add datasets
 
-To make it easy for you to get started with GitLab, here's a list of recommended next steps.
+Custom datasets can be added in the ___load_data.py___ file.
+Therefore, add the data-file to a new subfolder of ___/data___ and add your dataloader in the ___load_raw_data___ function.
 
-Already a pro? Just edit this README.md and make it your own. Want to make it easy? [Use the template at the bottom](#editing-this-readme)!
-
-## Add your files
-
-- [ ] [Create](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#create-a-file) or [upload](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#upload-a-file) files
-- [ ] [Add files using the command line](https://docs.gitlab.com/ee/gitlab-basics/add-file.html#add-a-file-using-the-command-line) or push an existing Git repository with the following command:
-
-```
-cd existing_repo
-git remote add origin https://gitlab.ub.uni-bielefeld.de/christoph.duesing/federated_learning.git
-git branch -M main
-git push -uf origin main
-```
-
-## Integrate with your tools
-
-- [ ] [Set up project integrations](https://gitlab.ub.uni-bielefeld.de/christoph.duesing/federated_learning/-/settings/integrations)
-
-## Collaborate with your team
-
-- [ ] [Invite team members and collaborators](https://docs.gitlab.com/ee/user/project/members/)
-- [ ] [Create a new merge request](https://docs.gitlab.com/ee/user/project/merge_requests/creating_merge_requests.html)
-- [ ] [Automatically close issues from merge requests](https://docs.gitlab.com/ee/user/project/issues/managing_issues.html#closing-issues-automatically)
-- [ ] [Enable merge request approvals](https://docs.gitlab.com/ee/user/project/merge_requests/approvals/)
-- [ ] [Automatically merge when pipeline succeeds](https://docs.gitlab.com/ee/user/project/merge_requests/merge_when_pipeline_succeeds.html)
-
-## Test and Deploy
-
-Use the built-in continuous integration in GitLab.
-
-- [ ] [Get started with GitLab CI/CD](https://docs.gitlab.com/ee/ci/quick_start/index.html)
-- [ ] [Analyze your code for known vulnerabilities with Static Application Security Testing(SAST)](https://docs.gitlab.com/ee/user/application_security/sast/)
-- [ ] [Deploy to Kubernetes, Amazon EC2, or Amazon ECS using Auto Deploy](https://docs.gitlab.com/ee/topics/autodevops/requirements.html)
-- [ ] [Use pull-based deployments for improved Kubernetes management](https://docs.gitlab.com/ee/user/clusters/agent/)
-- [ ] [Set up protected environments](https://docs.gitlab.com/ee/ci/environments/protected_environments.html)
-
-***
-
-# Editing this README
-
-When you're ready to make this README your own, just edit this file and use the handy template below (or feel free to structure it however you want - this is just a starting point!).  Thank you to [makeareadme.com](https://www.makeareadme.com/) for this template.
-
-## Suggestions for a good README
-Every project is different, so consider which of these sections apply to yours. The sections used in the template are suggestions for most open source projects. Also keep in mind that while a README can be too long and detailed, too long is better than too short. If you think your README is too long, consider utilizing another form of documentation rather than cutting out information.
-
-## Name
-Choose a self-explaining name for your project.
-
-## Description
-Let people know what your project can do specifically. Provide context and add a link to any reference visitors might be unfamiliar with. A list of Features or a Background subsection can also be added here. If there are alternatives to your project, this is a good place to list differentiating factors.
-
-## Badges
-On some READMEs, you may see small images that convey metadata, such as whether or not all the tests are passing for the project. You can use Shields to add some to your README. Many services also have instructions for adding a badge.
-
-## Visuals
-Depending on what you are making, it can be a good idea to include screenshots or even a video (you'll frequently see GIFs rather than actual videos). Tools like ttygif can help, but check out Asciinema for a more sophisticated method.
-
-## Installation
-Within a particular ecosystem, there may be a common way of installing things, such as using Yarn, NuGet, or Homebrew. However, consider the possibility that whoever is reading your README is a novice and would like more guidance. Listing specific steps helps remove ambiguity and gets people to using your project as quickly as possible. If it only runs in a specific context like a particular programming language version or operating system or has dependencies that have to be installed manually, also add a Requirements subsection.
-
-## Usage
-Use examples liberally, and show the expected output if you can. It's helpful to have inline the smallest example of usage that you can demonstrate, while providing links to more sophisticated examples if they are too long to reasonably include in the README.
-
-## Support
-Tell people where they can go to for help. It can be any combination of an issue tracker, a chat room, an email address, etc.
-
-## Roadmap
-If you have ideas for releases in the future, it is a good idea to list them in the README.
-
-## Contributing
-State if you are open to contributions and what your requirements are for accepting them.
-
-For people who want to make changes to your project, it's helpful to have some documentation on how to get started. Perhaps there is a script that they should run or some environment variables that they need to set. Make these steps explicit. These instructions could also be useful to your future self.
-
-You can also document commands to lint the code or run tests. These steps help to ensure high code quality and reduce the likelihood that the changes inadvertently break something. Having instructions for running tests is especially helpful if it requires external setup, such as starting a Selenium server for testing in a browser.
-
-## Authors and acknowledgment
-Show your appreciation to those who have contributed to the project.
-
-## License
-For open source projects, say how it is licensed.
-
-## Project status
-If you have run out of energy or time for your project, put a note at the top of the README saying that development has slowed down or stopped completely. Someone may choose to fork your project or volunteer to step in as a maintainer or owner, allowing your project to keep going. You can also make an explicit request for maintainers.
+There, you have to set the number of features and classes, define a model if ___model_name___ is set to ___auto___ and read your data accordingly.
+Finally, ___X_raw___ has to contain a list of lists, where each list is the feature representation of a single data point.
+___y_raw___ should be a list of float or int valus, either containing the index of the respective class or the regression target.
