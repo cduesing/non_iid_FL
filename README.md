@@ -1,8 +1,28 @@
-# Federated_Learning
+# Simulated Federated Learning on IID and Non-IID data
+
+Federated Learning (FL) is a great learning paradigm to jointly train machine learning models among various clients while data privacy is maintained.
+This project serves to demonstrate the potential of FL on datasets of your choice.
+Therefore it provides a variety of FL strategies, types of data imbalance, and allows to apply custom models and data.
+
+Despite its potential, FL is known to suffer from what is called non-iid data. Here, the performance of the jointly trained model decreases if the data held by each client differs in terms of labels, quantity, or features.
+In turn, this project provides a toolset to simulate different types of data imbalance within the federation in order to measure its impact on FL performance.
+
+## Installation
 
 
+## Run
 
-## Getting started
+
+## Choose Federated Learning Strategies
+
+
+## Apply Data Imbalances
+
+
+## Add Models
+
+
+## Add datasets
 
 To make it easy for you to get started with GitLab, here's a list of recommended next steps.
 
