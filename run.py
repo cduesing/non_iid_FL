@@ -1,11 +1,6 @@
 import strategies
 import load_data
 
-import pandas as pd
-import numpy as np
-import matplotlib.pyplot as plt
-import seaborn as sns
-import statistics
 import warnings
 import argparse
 warnings.filterwarnings("ignore")
@@ -55,7 +50,6 @@ if __name__ == '__main__':
                         required=True)
     parser.add_argument('--dataset', 
                         help='name of the dataset', 
-                        choices=["covtype"], 
                         default="covtype", 
                         required=True)
     parser.add_argument('--label_skew', 
