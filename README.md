@@ -66,4 +66,4 @@ Therefore, add the data-file to a new subfolder of ___/data___ and add your data
 
 There, you have to set the number of features and classes, define a model if ___model_name___ is set to ___auto___ and read your data accordingly.
 Finally, ___X_raw___ has to contain a list of lists, where each list is the feature representation of a single data point.
-___y_raw___ should be a list of float or int valus, either containing the index of the respective class or the regression target.
+___y_raw___ should be a list of float or int values, either containing the index of the respective class or the regression target.
